@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Ball : MonoBehaviour {
-
+    public Vector3 speed;
     private AudioSource audioSource;
     private Rigidbody rb;
 	// Use this for initialization
@@ -23,7 +23,7 @@ public class Ball : MonoBehaviour {
 
     void Launch()
     {
-        rb.velocity = new Vector3(0, 0, 200f);
+        rb.velocity = speed;
         audioSource.Play();
     }
 
