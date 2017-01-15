@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Ball : MonoBehaviour {
     public Vector3 speed;
+    public bool isLaunched = false;
+
     private AudioSource audioSource;
     private Rigidbody rb;
 	// Use this for initialization
@@ -20,6 +22,7 @@ public class Ball : MonoBehaviour {
 
     public void Launch(Vector3 velocity)
     {
+        isLaunched = true;
         rb.velocity = velocity;
         rb.useGravity = true;
        

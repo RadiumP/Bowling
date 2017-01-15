@@ -11,6 +11,7 @@ public class DragLaunch : MonoBehaviour {
     private Vector3 startPosition;
     private float endTime;
     private Vector3 endPosition;
+   
     // Use this for initialization
     void Start () {
         ball = GetComponent<Ball>();
@@ -35,6 +36,20 @@ public class DragLaunch : MonoBehaviour {
 
        
         ball.Launch(speed);
+       
+    }
+
+
+    public void MoveStart(float xNudge)
+    {
+        if(!ball.isLaunched) 
+        {
+            if(ball.transform.position.x + xNudge >= -43f && ball.transform.position.x + xNudge <= 43f)
+            ball.transform.position += new Vector3(xNudge, 0, 0); 
+        }
+
+       
+       
     }
 
 
