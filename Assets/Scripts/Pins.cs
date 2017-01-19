@@ -19,15 +19,16 @@ public class Pins : MonoBehaviour {
 
     public bool IsStanding()
     {
+        //if g too high, will shake.
         //Mathf.Abs(Mathf.DeltaAngle(transform.rotation.eulerAngles.x, 0)); // Calculates the shortest difference between two given angles given in degrees.
         Vector3 currentAngle = transform.rotation.eulerAngles;
-        if (Mathf.Abs(Mathf.DeltaAngle(currentAngle.x, 0)) < angleThreshold && Mathf.Abs(Mathf.DeltaAngle(currentAngle.z, 0)) < angleThreshold)
+        if (Mathf.Abs(Mathf.DeltaAngle(currentAngle.x - 270f, 0)) < angleThreshold && Mathf.Abs(Mathf.DeltaAngle(currentAngle.z, 0)) < angleThreshold)
         {
             return true;
         }
         else
         {
-            Debug.Log(Mathf.Abs(currentAngle.x));
+            //Debug.Log(Mathf.Abs(Mathf.DeltaAngle(currentAngle.z, 0)));
             return false;
         }
 
