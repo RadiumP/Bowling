@@ -6,20 +6,52 @@ using UnityEngine.UI;
 
 public class PinSetter : MonoBehaviour {
 
-
+    public int lastStanding = -1;
     public Text StandingPins;
 
+    private Ball ball;
+    private float lastCheckTime;
     private bool ballEntered = false;
 
 	// Use this for initialization
 	void Start () {
-		
+        ball = GameObject.FindObjectOfType<Ball>();
 	}
 	
 	// Update is called once per frame
 	void Update () {
         StandingPins.text = CountStanding().ToString();
+        if (ballEntered)
+        {
+            
+            CheckStanding();
+        }
+       
 	}
+
+
+    void CheckStanding()
+    {
+        if(lastStanding != CountStanding())
+        {
+            lastCheckTime = Time.time;
+            lastStanding = CountStanding();
+        }
+        if (Time.time - lastCheckTime > 3f)
+        {
+            PinsHaveSettled();
+        }
+
+    }
+
+    void PinsHaveSettled()
+    {
+        lastStanding = -1;
+        ballEntered = false;
+        StandingPins.color = Color.green;
+        ball.Reset();
+    }
+
 
     int CountStanding()
     {
@@ -33,6 +65,10 @@ public class PinSetter : MonoBehaviour {
         }
         return remains;
     }
+
+ 
+
+
 
     void OnTriggerEnter(Collider col)
     {
