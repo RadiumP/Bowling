@@ -6,16 +6,49 @@ public class Pins : MonoBehaviour {
     //no nested prefabs in unity: prefab has multiple gameobjects from another prefab is not linked to it anymore
 
     public float angleThreshold = 5f;
-   
-	// Use this for initialization
-	void Start () {
-       
+    public float raiseDist = 40f;
+
+    private Rigidbody rb;
+    // Use this for initialization
+    void Start () {
+        rb = GetComponent<Rigidbody>();
     }
 	
 	// Update is called once per frame
 	void Update () {
         
 	}
+
+
+    public void Raise()
+    {
+        Debug.Log("Raise");
+       // foreach (Pins pin in FindObjectsOfType<Pins>())
+        //{
+            if (IsStanding())
+            {
+                transform.Translate(new Vector3(0, raiseDist, 0), Space.World);//space.world makes it work in global y
+                rb.useGravity = false;
+                
+            }
+
+        //}
+    }
+
+    public void Lower()
+    {
+        Debug.Log("Lower");
+        // foreach (Pins pin in FindObjectsOfType<Pins>())
+        //{
+        if (IsStanding())
+        {
+            transform.Translate(new Vector3(0, -raiseDist, 0), Space.World);//space.world makes it work in global y
+            rb.useGravity = true;
+        }
+
+        //}
+    }
+
 
     public bool IsStanding()
     {

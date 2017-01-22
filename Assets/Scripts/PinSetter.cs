@@ -8,6 +8,7 @@ public class PinSetter : MonoBehaviour {
 
     public int lastStanding = -1;
     public Text StandingPins;
+    public float raiseDist = 40f;
 
     private Ball ball;
     private float lastCheckTime;
@@ -22,12 +23,41 @@ public class PinSetter : MonoBehaviour {
 	void Update () {
         StandingPins.text = CountStanding().ToString();
         if (ballEntered)
-        {
-            
+        {            
             CheckStanding();
         }
        
 	}
+
+    public void RaisePins()
+    {
+        Debug.Log("Raise");
+        foreach (Pins pin in FindObjectsOfType<Pins>())
+        {
+            //if (pin.IsStanding())
+            {
+                pin.Raise();
+            }
+            
+        }
+    }
+
+    public void LowerPins()
+    {
+        Debug.Log("Lower");
+        foreach (Pins pin in FindObjectsOfType<Pins>())
+        {
+            //if (pin.IsStanding())
+            {
+                pin.Lower();
+            }
+
+        }
+    }
+    public void RenewPins()
+    {
+        Debug.Log("Renew");
+    }
 
 
     void CheckStanding()
