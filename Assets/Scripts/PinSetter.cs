@@ -9,6 +9,8 @@ public class PinSetter : MonoBehaviour {
     public int lastStanding = -1;
     public Text StandingPins;
     public float raiseDist = 40f;
+    public GameObject pinSet;
+
 
     private Ball ball;
     private float lastCheckTime;
@@ -57,6 +59,8 @@ public class PinSetter : MonoBehaviour {
     public void RenewPins()
     {
         Debug.Log("Renew");
+        GameObject newPins = Instantiate(pinSet);
+        newPins.transform.position += new Vector3(0, 20f, 0);
     }
 
 
