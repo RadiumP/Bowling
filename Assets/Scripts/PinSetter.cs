@@ -117,17 +117,7 @@ public class PinSetter : MonoBehaviour {
 
     }
 
-    void OnTriggerExit(Collider col)
-
-    {
-        GameObject thingExit = col.gameObject;
-        //ball enters
-        if (thingExit.GetComponent<Pins>())
-        {
-            Destroy(thingExit);
-        }
-    }
-
+   
 
 
 }
